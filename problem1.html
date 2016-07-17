@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	 <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+   <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="styles.css">
+
+	 <meta charset="utf-8">
+	 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" >
+    
+    var myapp=angular.module("myapp",[]);
+    myapp.constant('SchoolName','AK School')
+     myapp.controller("myCtrl",function($scope, $http,SchoolName) {
+            consoel.log("School name is"+schoolName);
+            $http.get('/data.json').then(function(res){
+          $scope.keys = res.data;                
+        },error(function(data) {
+      console.log("error occured");
+    });
+        }
+    </script>
+</head>
+<body>
+   
+    <div ng-app="myapp" ng-controller="myCtrl">
+        <table class=table>
+        <thead><tr><td>Subject</td><td>ID</td></tr></thead>
+            <tbody>
+            <tr ng-repeat="key in keys">
+                <td>{{key.subject}}</td>
+                <td>{{key.id}}</td></tr></tbody>
+        
+        </table>
+        
+    </div>
+   
+
+</body>
+</html> 

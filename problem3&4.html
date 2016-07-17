@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	 <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+   <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="styles.css">
+
+	 <meta charset="utf-8">
+	 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" >
+    
+    var myapp=angular.module("myapp",[]);
+    
+     myapp.controller("myCtrl",function($scope,getEmpData,EmpSrv) {
+        
+         $scope.keys=getEmpData.getData();
+         $scope.checks=EmpSrv.getData1();
+        
+    });
+    
+    
+     //factory Service
+    
+     myapp.factory('getEmpData', function() {     
+         var factory={}  
+         factory.getData = function() {
+            var data=[
+                {
+                    "name":"Neha",
+                    "Department":"IT",
+                    "Salary":"3500",
+                    
+                },
+                 {
+                    "name":"pooja",
+                    "Department":"Operation",
+                    "Salary":"4500",
+                    
+                }
+                ,{
+                    "name":"Priti",
+                    "Department":"Admin",
+                    "Salary":"1500",
+                    
+                },
+                 {
+                    "name":"tanishq",
+                    "Department":"HR",
+                    "Salary":"5500",
+                    
+                }
+                
+            ]
+            return data;
+         }
+return factory;      
+     
+     }); 
+     
+    //service 
+    myapp.factory('getEmpSrv', function() {     
+         var factory = {};  
+        factory.getData = function() {
+            var data=[
+                {
+                    "name":"aman",
+                    "Department":"IT",
+                    "Salary":"3500",
+                    
+                },
+                 {
+                    "name":"Karan",
+                    "Department":"Operation",
+                    "Salary":"4500",
+                    
+                }
+                ,{
+                    "name":"Ram",
+                    "Department":"Admin",
+                    "Salary":"1500",
+                    
+                },
+                 {
+                    "name":"Sai",
+                    "Department":"HR",
+                    "Salary":"5500",
+                    
+                }
+                
+            ]
+            return data;
+         }
+return factory;      
+      }); 
+
+      myapp.service('EmpSrv', function(getEmpSrv){
+            this.getData1 = function(a) { 
+            return getEmpSrv.getData(); 
+         }
+      });
+    </script>
+</head>
+<body>
+   
+    <div ng-app="myapp" ng-controller="myCtrl">
+        <h3>Female Employees</h3>
+        <table class=table>
+        <thead><tr><th>Name</th><th>Department</th><th>Salary</th></tr></thead>
+            <tbody>
+            <tr ng-repeat="employee in keys">
+                <td>{{employee.name}}</td>
+                <td>{{employee.Department}}</td>
+                <td>{{employee.Salary}}</td>
+                </tr></tr></tbody>
+        
+        </table>
+    <hr/>
+    <h3>Male Employees</h3>
+     <table class=table>
+        <thead><tr><th>Name</th><th>Department</th><th>Salary</th></tr></thead>
+            <tbody>
+            <tr ng-repeat="employee in checks">
+                <td>{{employee.name}}</td>
+                <td>{{employee.Department}}</td>
+                <td>{{employee.Salary}}</td>
+                </tr></tr></tbody>
+        
+        </table>   
+    </div>
+   
+
+</body>
+</html> 
